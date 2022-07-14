@@ -32,6 +32,10 @@ Cada uno de estos modulos tiene su propio contenedor de inversify para el manejo
 
 Las rutas se crean en `app.controller` donde se consumen los servicios, y cada endpoint tiene un manejo basico de errores con un *try catch*. Para las peticion de adicion de oferta y consulta de top de ofertas existe un middleware en `session.middleware` para la validacion de la sesion de usuarios.
 
+### Tests
+
+No se incluyeron test para el proyecto.
+
 ## Ejecucion
 
 ### Despues de descargar el proyecto:
