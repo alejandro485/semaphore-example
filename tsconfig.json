@@ -1,0 +1,15 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "target": "es5",
+        "types": ["reflect-metadata"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "sourceMap": false,
+        "outDir": "./dist",
+        "baseUrl": "./"
+    }
+}
