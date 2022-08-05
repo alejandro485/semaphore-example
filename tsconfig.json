@@ -1,8 +1,9 @@
 {
     "include": ["src"],
+    "exclude": ["node_modules", "test", "dist", "**/*test.ts"],
     "compilerOptions": {
         "target": "es5",
-        "types": ["reflect-metadata"],
+        "types": ["reflect-metadata", "jest"],
         "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,

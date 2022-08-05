@@ -11,7 +11,6 @@ export class BidManagerService {
     }
 
     public addBid(item: string, user: string, amount: number) {
-        console.log(`bid: ${item}`)
         if (!this.items[item]) {
             this.items[item] = [];
         }
