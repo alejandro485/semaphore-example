@@ -39,7 +39,6 @@ describe('ValidateTokenService', () => {
     it('get user by nonexistent token', () => {
         const tup = tokenUserPairs[0];
         const user = validateTokenService.getUserByToken(tup.token);
-        expect(user).not.toEqual(tup.user);
         expect(user).toBeUndefined();
     });
 
@@ -54,7 +53,7 @@ describe('ValidateTokenService', () => {
         const testData = tokenUserPairs[0];
         tokenManagerService.addToken(testData.token, testData.user);
         const userResponse = validateTokenService.getUserByToken(testData.token);
-        expect(userResponse).toEqual(testData.user);
+        expect(userResponse).toBe(testData.user);
     });
 
     it('validate expirated token', async () => {

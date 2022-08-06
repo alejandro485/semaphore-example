@@ -31,7 +31,7 @@ describe('GetBidsService', () => {
         const user = Math.random().toString(36).slice(2, 10);
         bidManagerService.addBid(item, user, 10000)
         const bids = getBidsService.getBids(item)
-        expect(bids[0][user]).toEqual(10000)
+        expect(bids[0][user]).toBe(10000)
     });
 
 });

@@ -32,7 +32,7 @@ describe('TokenManagerService', () => {
         const testData = tokenUserPairs[0];
         tokenManagerService.addToken(testData.token, testData.user);
         const userResponse = tokenManagerService.getToken(testData.token,);
-        expect(userResponse).toEqual(testData.user);
+        expect(userResponse).toBe(testData.user);
     });
 
     it('register multiple sessions', () => {
@@ -40,7 +40,7 @@ describe('TokenManagerService', () => {
             tokenManagerService.addToken(tup.token, tup.user);
         });
         tokenUserPairs.forEach(tup => {
-            expect(tokenManagerService.getToken(tup.token)).toEqual(tup.user);
+            expect(tokenManagerService.getToken(tup.token)).toBe(tup.user);
         });
     });
 
@@ -50,7 +50,7 @@ describe('TokenManagerService', () => {
         });
         for (let i = 0; i < 4; i++) {
             tokenUserPairs.forEach(tup => {
-                expect(tokenManagerService.getToken(tup.token)).toEqual(tup.user);
+                expect(tokenManagerService.getToken(tup.token)).toBe(tup.user);
             });
             await sleep(1000);
         }

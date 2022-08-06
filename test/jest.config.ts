@@ -7,8 +7,8 @@ const config: Config.InitialOptions = {
         'json',
         'ts',
     ],
-    rootDir: 'src',
-    testRegex: '.*\\.test\\.ts$',
+    rootDir: '.',
+    testRegex: '.http.test.ts$',
     transform: {
         '^.+\\.(t|j)s$': 'ts-jest'
     },

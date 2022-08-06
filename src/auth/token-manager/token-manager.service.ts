@@ -17,7 +17,6 @@ export class TokenManagerService {
         const timeOut = setTimeout(() => {
             delete this.tokens[token];
             delete this.timeOuts[token];
-            // console.log(`token ${token} deleted`);
         }, TTL_TOKENS);
         this.timeOuts[token] = timeOut;
     }

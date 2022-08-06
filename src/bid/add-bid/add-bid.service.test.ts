@@ -34,7 +34,7 @@ describe('AddBidService', () => {
     });
 
     it('bad amount', async () => {
-        expect(addBidService.addBid(item, token, 'df323f')).rejects.toEqual('Invalid amount');
+        expect(addBidService.addBid(item, token, 'df323f')).rejects.toBe('Invalid amount');
     });
 
 });
