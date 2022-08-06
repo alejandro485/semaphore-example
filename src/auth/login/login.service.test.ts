@@ -6,7 +6,7 @@ describe('LoginService', () => {
     let loginService: LoginService;
     let tokenManagerService: TokenManagerService;
 
-    const users = ['paco', 'luis', 'pedro', 'juan']
+    const users = ['paco', 'luis', 'pedro', 'juan'];
 
     beforeEach(() => {
         tokenManagerService = new TokenManagerService();
@@ -27,7 +27,7 @@ describe('LoginService', () => {
         const attempts = 10;
         const tokens: string[] = []
 
-        for (let i=0; i < attempts; i++) {
+        for (let i = 0; i < attempts; i++) {
             const user = users[Math.round(Math.random() * (users.length - 1))];
             tokens.push(loginService.login(user));
         }

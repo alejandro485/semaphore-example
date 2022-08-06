@@ -14,9 +14,9 @@ export class BidManagerService {
         if (!this.items[item]) {
             this.items[item] = [];
         }
-        const userIndex = this.items[item].findIndex(it => it.user === user && it.amount < amount);
-        if (userIndex > -1) {
-            this.items[item][userIndex].amount = amount;
+        const userBid = this.items[item].find(it => it.user === user);
+        if (userBid) {
+            if (userBid.amount < amount) userBid.amount = amount;
         } else {
             this.items[item].push({
                 user, amount,

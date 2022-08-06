@@ -15,9 +15,9 @@ describe('TokenManagerService', () => {
         tokenUserPairs = []
 
         const totalUsers = 10
-        for (let i=0; i < totalUsers; i++) {
+        for (let i = 0; i < totalUsers; i++) {
             const token = Math.random().toString(36).slice(2);
-            const user = Math.random().toString(36).slice(2,10);
+            const user = Math.random().toString(36).slice(2, 10);
             tokenUserPairs.push({
                 user, token,
             })
@@ -48,7 +48,7 @@ describe('TokenManagerService', () => {
         tokenUserPairs.forEach(tup => {
             tokenManagerService.addToken(tup.token, tup.user);
         });
-        for(let i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             tokenUserPairs.forEach(tup => {
                 expect(tokenManagerService.getToken(tup.token)).toEqual(tup.user);
             });

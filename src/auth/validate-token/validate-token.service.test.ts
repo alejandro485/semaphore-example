@@ -18,9 +18,9 @@ describe('ValidateTokenService', () => {
         tokenUserPairs = []
 
         const totalUsers = 10
-        for (let i=0; i < totalUsers; i++) {
+        for (let i = 0; i < totalUsers; i++) {
             const token = Math.random().toString(36).slice(2);
-            const user = Math.random().toString(36).slice(2,10);
+            const user = Math.random().toString(36).slice(2, 10);
             tokenUserPairs.push({
                 user, token,
             })

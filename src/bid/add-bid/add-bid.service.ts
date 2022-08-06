@@ -11,7 +11,7 @@ export class AddBidService {
     ) { }
 
     public async addBid(item: string, sessionKey: string, amount: string) {
-        const floatAmount = parseFloat(amount)
+        const floatAmount = parseFloat(amount);
         if (isNaN(floatAmount)) {
             throw 'Invalid amount';
         }
