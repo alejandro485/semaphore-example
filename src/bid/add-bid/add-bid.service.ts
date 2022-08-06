@@ -13,7 +13,7 @@ export class AddBidService {
     public async addBid(item: string, sessionKey: string, amount: string) {
         const floatAmount = parseFloat(amount);
         if (isNaN(floatAmount)) {
-            throw 'Invalid amount';
+            throw 'invalid amount';
         }
         const user = this.validateTokenService.getUserByToken(sessionKey);
         await this.bidSemaphoreService.addBid(item, user, floatAmount);

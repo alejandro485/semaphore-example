@@ -30,11 +30,11 @@ describe('AddBidService', () => {
     });
 
     it('add bid', () => {
-        expect(addBidService.addBid(item, token, (Math.random() * 10).toString())).resolves.toBeUndefined();
+        expect(addBidService.addBid(item, token, (Math.random() * 1000).toString())).resolves.toBeUndefined();
     });
 
     it('bad amount', async () => {
-        expect(addBidService.addBid(item, token, 'df323f')).rejects.toBe('Invalid amount');
+        expect(addBidService.addBid(item, token, 'a' + Math.random().toString(36).slice(2))).rejects.toBe('invalid amount');
     });
 
 });

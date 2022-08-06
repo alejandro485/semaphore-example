@@ -6,7 +6,9 @@ Aplicacion backend de ofertas por productos con autenticacion basica.
 
 ### Vista general
 
-La estructura es similar a la ofrecida por NestJs, donde las funcionalidades se plasman en servicios cada uno con su responsabilidad, pero no se usaron modulos convencionales, en cambio los servicios se ubicaron en contenedores de [inversify](https://inversify.io/) para poder gestionar de forma sencilla las dependencias entre servicios. Con inversify se mantuvieron todos los servicios como singletons para asi no usar memoria por peticiones o invocaciones.
+La estructura es similar a la ofrecida por [NestJs](https://nestjs.com/), donde las funcionalidades se plasman en servicios cada uno con su responsabilidad, pero no se usaron modulos convencionales, en cambio los servicios se ubicaron en contenedores de [inversify](https://inversify.io/) para poder gestionar de forma sencilla las dependencias entre servicios. Con inversify se mantuvieron todos los servicios como singletons para asi no usar memoria por peticion(es) o invocacion(es).
+
+Para la realizacion de las pruebas sobre el proyecto se uso [jest](https://jestjs.io/), junto a sus dependencias para typescript, y supertest para probar las peticiones http.
 
 ### Estructura
 
@@ -34,7 +36,21 @@ Las rutas se crean en `app.controller` donde se consumen los servicios, y cada e
 
 ### Tests
 
-No se incluyeron test para el proyecto.
+En el proyecto se realizaron 2 tipos de test: uno sobre los servicios y otro sobre las peticiones http, generando asi dos grupos de tests que se realizaran por separado.
+
+Mas adelante se especifica como ejecutar cada grupo de tests.
+
+### Test en servicios
+
+Para cada servicio, en su propia carpeta, se adjunto un archivo de test que contiene las pruebas al comportamiento del mismo. En los casos donde el servicio a probar tiene dependencias estas se crean en para los casos de prueba, exceptuando el servicio `add-bid` donde se uso el contenedor principal de la aplicacion ya que sus dependencias son muy extensas.
+
+Para los servicios `bid-semaphore` y `get-bids` se escribieron pocas pruebas debido a la dificultad de probar su comportamiento: en el caso de `bid-semaphore` el control de la concurrencia y al encolamiento de intentos, y para `get-bids` por lo heterogenea que puede llegar ser su estructura, ademas de que muchas de sus validaciones son compartidas con el servicio `bid-manager`.
+
+### Test en peticiones
+
+Para las pruebas de las peticiones, se escribieron y se guardaron el carpeta **test**, alli por cada ruta del proyecto se creo un archivo de pruebas asociado a la misma, y donde solo se evaluan peticiones http. Para las rutas de '/:item/bid' y '/:item/topBidList' se invocaron la ruta de login '/:user/login' para poder realizar su flujo como es debido.
+
+A este nivel las rutas '/:item/topBidList' y '/:item/bid' arrastran los mismo problemas al momento de escribir los tests que los servicios `get-bids` y `bid-semaphore` respectivamente.
 
 ## Ejecucion
 
@@ -52,3 +68,10 @@ Ejecucion (escuchando el puerto 8080)
 
     $ npm start
 
+Ejecucion de tests sobre servicios
+
+    $ npm run test
+
+Ejecucion de tests sobre peticiones
+
+    $ npm run test:http

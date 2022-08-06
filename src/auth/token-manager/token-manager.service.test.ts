@@ -24,9 +24,7 @@ describe('TokenManagerService', () => {
         }
     });
 
-    afterEach(() => {
-        tokenManagerService.unsetAll();
-    });
+    afterEach(() => { });
 
     it('register session', () => {
         const testData = tokenUserPairs[0];

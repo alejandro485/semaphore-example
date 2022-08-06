@@ -50,7 +50,7 @@ describe('BidManagerService', () => {
         expect(bid.amount).toBe(Math.max(...amounts));
     });
 
-    it('multiple bid adds by user', () => {
+    it('multiple bid adds per user', () => {
         const amounts: number[] = []
         for (let i = 0; i < BIDS_LIMIT; i++) {
             amount = Math.random() * 1000;
@@ -81,6 +81,22 @@ describe('BidManagerService', () => {
         expect(bids.length).toBe(BIDS_LIMIT);
         expect(bid).toBeDefined();
         expect(bid.amount).toBe(Math.max(...amounts));
+    });
+
+    it('ordered list', () => {
+        const amounts: { user: string, amount: number }[] = [];
+        const iter = (Math.random() * 10) + BIDS_LIMIT;
+        for (let i = 0; i < iter; i++) {
+            amount = Math.random() * 1000;
+            user = Math.random().toString(36).slice(2, 10);
+            bidManagerService.addBid(item, user, amount);
+            amounts.push({ user, amount });
+        }
+        const bids = bidManagerService.getBids(item);
+        amounts.sort((it1, it2) => it2.amount - it1.amount);
+
+        expect(bids.length).toBe(BIDS_LIMIT);
+        expect(bids).toEqual(amounts.slice(0, BIDS_LIMIT));
     });
 
 });

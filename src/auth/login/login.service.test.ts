@@ -6,19 +6,15 @@ describe('LoginService', () => {
     let loginService: LoginService;
     let tokenManagerService: TokenManagerService;
 
-    const users = ['paco', 'luis', 'pedro', 'juan'];
-
     beforeEach(() => {
         tokenManagerService = new TokenManagerService();
         loginService = new LoginService(tokenManagerService);
     });
 
-    afterEach(() => {
-        tokenManagerService.unsetAll()
-    });
+    afterEach(() => { });
 
     it('basic login', () => {
-        const user = users[Math.round(Math.random() * (users.length - 1))];
+        const user = Math.random().toString(36).slice(2, 10);
         const token = loginService.login(user)
         expect(token).toMatch(/^[0-9a-z]*/g)
     });
@@ -28,7 +24,7 @@ describe('LoginService', () => {
         const tokens: string[] = []
 
         for (let i = 0; i < attempts; i++) {
-            const user = users[Math.round(Math.random() * (users.length - 1))];
+            const user = Math.random().toString(36).slice(2, 10);
             tokens.push(loginService.login(user));
         }
         expect((new Set(tokens).size === tokens.length)).toBeTruthy();

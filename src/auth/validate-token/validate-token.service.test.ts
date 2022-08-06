@@ -27,9 +27,7 @@ describe('ValidateTokenService', () => {
         }
     });
 
-    afterEach(() => {
-        tokenManagerService.unsetAll();
-    });
+    afterEach(() => { });
 
     it('validate nonexistent token', () => {
         const tup = tokenUserPairs[0];
