@@ -9,12 +9,7 @@ export class GetBidsService {
     ) { }
 
     public getBids(item: string) {
-        const originalBids = this.bidManager.getBids(item);
-        return originalBids.map(bd => {
-            const obj = { };
-            obj[bd.user] = bd.amount;
-            return obj;
-        });
+        return this.bidManager.getBids(item);
     }
 
 }

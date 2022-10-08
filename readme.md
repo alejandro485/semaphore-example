@@ -1,4 +1,4 @@
-# Kuupanda Developer Backend Test
+# Semaforo de concurrencia para
 
 Aplicacion backend de ofertas por productos con autenticacion basica.
 
@@ -6,7 +6,7 @@ Aplicacion backend de ofertas por productos con autenticacion basica.
 
 ### Vista general
 
-La estructura es similar a la ofrecida por [NestJs](https://nestjs.com/), donde las funcionalidades se plasman en servicios cada uno con su responsabilidad, pero no se usaron modulos convencionales, en cambio los servicios se ubicaron en contenedores de [inversify](https://inversify.io/) para poder gestionar de forma sencilla las dependencias entre servicios. Con inversify se mantuvieron todos los servicios como singletons para asi no usar memoria por peticion(es) o invocacion(es).
+La estructura es similar a la ofrecida por [NestJs](https://nestjs.com/), donde las funcionalidades se plasman en servicios cada una con su responsabilidad, pero no se usaron modulos como clases, en cambio los servicios se ubicaron en contenedores de [inversify](https://inversify.io/) para poder gestionar de forma sencilla las dependencias entre servicios. Con inversify se mantuvieron todos los servicios como singletons para asi no usar memoria por peticion(es) o invocacion(es).
 
 Para la realizacion de las pruebas sobre el proyecto se uso [jest](https://jestjs.io/), junto a sus dependencias para typescript, y supertest para probar las peticiones http.
 
@@ -14,7 +14,10 @@ Para la realizacion de las pruebas sobre el proyecto se uso [jest](https://jestj
 
 El archivo `main.ts` es el que inicia la ejecucion de la aplicacion y el backend en [Express](https://expressjs.com/), por defecto en el puerto 8080.
 
-Las constantes principales para la aplicacion estan en el archivo `config.ts`: BIDS_LIMIT (numero maximo de ofertas por producto), MAX_CONCURRENT_ADDS (numero maximo de ) y TTL_TOKENS (tiempo de vida de las sesiones de autenticacion). 
+Las constantes principales para la aplicacion estan en el archivo `config.ts`:
+* BIDS_LIMIT: numero maximo de ofertas por producto
+* MAX_CONCURRENT_ADDS: numero maximo de inserciones concurrentemente mediante del semaforo
+* TTL_TOKENS: tiempo de vida de las sesiones de autenticacion 
 
 Hay dos modulos principales, Auth y Bid:
 
@@ -36,7 +39,7 @@ Las rutas se crean en `app.controller` donde se consumen los servicios, y cada e
 
 ### Tests
 
-En el proyecto se realizaron 2 tipos de test: uno sobre los servicios y otro sobre las peticiones http, generando asi dos grupos de tests que se realizaran por separado.
+En el proyecto se realizaron 2 tipos de test: uno sobre cada servicio, unitarios, y otro sobre las peticiones http, generando asi dos grupos de tests que se realizaran por separado.
 
 Mas adelante se especifica como ejecutar cada grupo de tests.
 

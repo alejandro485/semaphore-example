@@ -32,7 +32,7 @@ describe('GetBidsService', () => {
         bidManagerService.addBid(item, user, 10000);
 
         const bids = getBidsService.getBids(item);
-        expect(bids[0][user]).toBe(10000);
+        expect(bids[0].amount).toBe(10000);
     });
 
     it('list multiple bid by user', () => {
@@ -49,8 +49,7 @@ describe('GetBidsService', () => {
 
         expect(bids.length).toBe(1);
         expect(bid).toBeDefined();
-        expect(bid[user]).toBeDefined();
-        expect(bid[user]).toBe(Math.max(...amounts));
+        expect(bid.amount).toBe(Math.max(...amounts));
     });
 
     it('users with amount', () => {
@@ -63,7 +62,9 @@ describe('GetBidsService', () => {
 
             const obj = { };
             obj[user] = amount;
-            bidsAdded.push(obj);
+            bidsAdded.push({
+                user, amount
+            });
         }
 
         const bids = getBidsService.getBids(item);
